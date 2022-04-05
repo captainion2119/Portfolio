@@ -4,9 +4,17 @@ import { Link } from '../components/AllSVGs'
 import { useRef } from 'react'
 import { Anchor } from '../components/AllSVGs'
 import { useEffect } from 'react'
+import { mediaQueries } from '../components/Themes'
 
 const Container = styled.div`
 position: relative;
+${mediaQueries(40)`
+  
+  display:none;
+
+
+
+`};
 `
 const Slider = styled.div`
 position: fixed;

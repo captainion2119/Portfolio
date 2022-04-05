@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { mediaQueries } from '../components/Themes'
 
 const Box = styled(motion(NavLink))`
 width: calc(10rem + 15vw);
@@ -22,6 +23,23 @@ z-index: 5;
     background-color: ${props => props.theme.text};
     transition: all 0.3s ease;
 }
+${mediaQueries(50)`
+width:calc(60vw);
+
+`}
+${mediaQueries(30)`
+
+height:18rem;
+
+`}
+
+${mediaQueries(25)`
+
+height:14rem;
+padding:0.8rem;
+backdrop-filter: none;
+
+`}
 `
 const Image = styled.div`
 background-image: ${props => `url(${props.img})`};
@@ -34,6 +52,16 @@ background-position: center center;
 ${Box}:hover &{
     border: 1px solid ${props => props.theme.body};
 }
+${mediaQueries(25)`
+    
+    height:70%;
+
+
+  `};
+
+  ${Box}:hover & {
+    border: 1px solid ${(props) => props.theme.body};
+  }
 `
 const Title = styled.h3`
 color: inherit;
@@ -46,15 +74,41 @@ border-bottom: 1px solid ${props => props.theme.text};
 ${Box}:hover &{
     border-bottom: 1px solid ${props => props.theme.body};
 }
+${mediaQueries(40)`
+font-size:calc(0.8em + 1vw);
+
+`};
+
+${mediaQueries(25)`
+
+font-size:calc(0.6em + 1vw);
+
+
+
+`};
 `
 const HashTags = styled.div`
 padding: 0.5rem 0;
+${mediaQueries(25)`
+    
+font-size:calc(0.5em + 1vw);
+
+
+
+`};
 `
 const Tag = styled.span`
 padding-right: 0.5rem;
 `
 const Date = styled.span`
 padding: 0.5rem 0;
+${mediaQueries(25)`
+    
+font-size:calc(0.5em + 1vw);
+
+
+
+`};
 `
 const Container = styled(motion.div)``;
 
@@ -78,7 +132,7 @@ const BlogComponent = (props) => {
         <Container
         variants={Item}
         >
-            <Box target="_blank" to={{pathname: link}}>
+            <Box target="_blank" to={{pathname: `${link}` }}>
                 <Image img={imgSrc} />
                 <Title>{name}</Title>
                 <HashTags>

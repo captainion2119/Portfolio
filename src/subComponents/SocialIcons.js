@@ -4,6 +4,7 @@ import { Github, Instagram, Twitter, YouTube } from '../components/AllSVGs'
 import styled from 'styled-components'
 import { DarkTheme } from '../components/Themes'
 import { motion } from 'framer-motion'
+import { mediaQueries } from '../components/Themes'
 
 const Icons = styled.div`
 display: flex;
@@ -19,6 +20,21 @@ z-index: 3;
     margin: 0.5rem 0;
 
 }
+
+${mediaQueries(20)`
+margin: 0.3rem 0;
+
+
+`};
+${mediaQueries(40)`
+left: 1rem;
+
+    svg{
+      width:20px;
+      height:20px
+    }
+
+`};
 `
 
 

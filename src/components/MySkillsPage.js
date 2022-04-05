@@ -8,6 +8,9 @@ import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
 import BigTitle from '../subComponents/BigTitle'
+import { Suspense } from 'react'
+import Loading from '../subComponents/Loading'
+import { mediaQueries } from './Themes'
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
@@ -17,6 +20,22 @@ position: relative;
 display: flex;
 justify-content: space-evenly;
 align-items: center;
+${mediaQueries(50)`
+flex-direction:column;  
+padding:8rem 0;
+height:auto;
+&>*:nth-child(5){
+  margin-bottom:5rem;
+}
+
+`};
+${mediaQueries(30)`
+
+&>*:nth-child(5){
+  margin-bottom:4rem;
+}
+
+`};
 `
 const Main = styled.div`
 border: 2px solid ${props => props.theme.text};
@@ -37,6 +56,17 @@ cursor: pointer;
     color: ${props => props.theme.body};
     background-color: ${props => props.theme.text};
 }
+
+
+${mediaQueries(60)`
+height: 55vh;
+`};
+
+${mediaQueries(50)`
+  width: 50vw;
+  height: max-content;
+
+`};
 `
 const Title = styled.h2`
 display: flex;
@@ -53,6 +83,25 @@ ${Main}:hover &{
     margin-right: 1rem;
 
 }
+${mediaQueries(60)`
+font-size:calc(0.8em + 1vw);
+`};
+
+${mediaQueries(50)`
+font-size:calc(1em + 2vw);
+margin-bottom:1rem;
+`};
+
+${mediaQueries(30)`
+            font-size:calc(1em + 1vw);
+`};
+${mediaQueries(25)`
+            font-size:calc(0.8em + 1vw);
+            svg{
+              width:30px;
+              height:30px;
+            }
+`};
 `
 const Description = styled.div`
 color: ${props => props.theme.text};
@@ -70,64 +119,84 @@ ul,p{
     margin-left: 2rem;
 }
 
+${mediaQueries(50)`
+font-size: calc(0.8em + 1vw);
+
+`};
+
+${mediaQueries(30)`
+          font-size:calc(0.7em + 1vw);
+
+  
+
+`};
+
+${mediaQueries(25)`
+          font-size:calc(0.5em + 1vw);
+
+  
+
+`};
 `
 const MySkillsPage = () => {
     return (
         <ThemeProvider theme={LightTheme}>
-        <Box>
-            <LogoComponent theme='light' />
-            <SocialIcons theme='light' />
-            <PowerButton />
-            <ParticleComponent theme='light'/>
-            <Main>
-                <Title>
-                    <Design width={40} height={40} /> Designer/Editor
-                </Title>
-                <Description>
-                    I like using my creativity in making new things.
-                </Description>
-                <Description>
-                    <strong>
-                        I like to Design
-                    </strong>
-                    <ul>
-                        <li>Thumbnails</li>
-                        <li>Product Ads</li>
-                        <li>UI/UX</li>
-                        <li>Other Visual elements</li>
-                    </ul>
-                </Description>
-                <Description>
-                    <strong>
-                        Tools
-                    </strong>
-                    <p>Gimp, Adobe AE, Filmora, etc.</p>
-                </Description>
-            </Main>
-            <Main>
-                <Title>
-                    <Develope width={40} height={40} /> Dev/Programmer
-                </Title>
-                <Description>
-                    I have been learning new languages and frameworks over the years.
-                </Description>
-                <Description>
-                    <strong>
-                        Skills
-                    </strong>
-                    <p>
-                        C, C++, C#, Java, Python, MySql, Html, React, Css, etc.
-                    </p>
-                </Description>
-                <Description>
-                    <strong>
-                        Tools
-                    </strong>
-                        <p>Intellij IDEA, Unreal Engine, Unity 3d, Spyder, VS Code, PyCharm, etc.</p>
-                </Description>
-            </Main>
-            <BigTitle text='SKILLS.' top='80%' right='30%'/>
-        </Box>
+            <Suspense fallback={<Loading/>}>
+                <Box>
+                    <LogoComponent theme='light' />
+                    <SocialIcons theme='light' />
+                    <PowerButton />
+                    <ParticleComponent theme='light'/>
+                    <Main>
+                        <Title>
+                            <Design width={40} height={40} /> Designer/Editor
+                        </Title>
+                        <Description>
+                            I like using my creativity in making new things.
+                        </Description>
+                        <Description>
+                            <strong>
+                                I like to Design
+                            </strong>
+                            <ul>
+                                <li>Thumbnails</li>
+                                <li>Product Ads</li>
+                                <li>UI/UX</li>
+                                <li>Other Visual elements</li>
+                            </ul>
+                        </Description>
+                        <Description>
+                            <strong>
+                                Tools
+                            </strong>
+                            <p>Gimp, Adobe AE, Filmora, etc.</p>
+                        </Description>
+                    </Main>
+                    <Main>
+                        <Title>
+                            <Develope width={40} height={40} /> Dev/Programmer
+                        </Title>
+                        <Description>
+                            I have been learning new languages and frameworks over the years.
+                        </Description>
+                        <Description>
+                            <strong>
+                                Skills
+                            </strong>
+                            <p>
+                                C, C++, C#, Java, Python, MySql, Html, React, Css, etc.
+                            </p>
+                        </Description>
+                        <Description>
+                            <strong>
+                                Tools
+                            </strong>
+                                <p>Intellij IDEA, Unreal Engine, Unity 3d, Spyder, VS Code, PyCharm, etc.</p>
+                        </Description>
+                    </Main>
+                    <BigTitle text='SKILLS.' top='80%' right='30%'/>
+                </Box>
+            </Suspense>
         </ThemeProvider>
     )
 }

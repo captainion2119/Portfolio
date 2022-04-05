@@ -2,15 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 import { ThemeProvider } from 'styled-components'
 import { DarkTheme } from './Themes'
-import LogoComponent from '../subComponents/LogoComponent'
-import PowerButton from '../subComponents/PowerButton'
-import SocialIcons from '../subComponents/SocialIcons'
 import { Work } from '../data/WorkData'
 import Card from '../subComponents/Card'
-import { useEffect, useRef } from 'react/cjs/react.development'
+import { useEffect, useRef } from 'react'
 import { YinYang } from './AllSVGs'
-import BigTitle from '../subComponents/BigTitle'
 import { motion } from 'framer-motion'
+import { lazy, Suspense } from 'react'
+import { mediaQueries } from './Themes'
+
+
+const SocialIcons = lazy(() => import("../subComponents/SocialIcons"));
+const PowerButton = lazy(() => import("../subComponents/PowerButton"));
+const LogoComponent = lazy(() => import("../subComponents/LogoComponent"));
+const BigTitle = lazy(() => import("../subComponents/BigTitle"));
+
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
@@ -30,7 +35,24 @@ bottom: 1rem;
 width: 80px;
 height: 80px;
 z-index: 1;
+${mediaQueries(40)`
+width:60px;
+    height:60px;   
+  svg{
+    width:60px;
+    height:60px;
+  }
 
+`};
+${mediaQueries(25)`
+   width:50px;
+    height:50px;
+   svg{
+    width:50px;
+    height:50px;
+  }
+
+`};
 `
 const Main = styled(motion.ul)`
 position: fixed;
@@ -39,6 +61,31 @@ left: calc(10rem + 15vw);
 height: 40vh;
 display: flex;
 color: ${props => props.theme.text};
+
+${mediaQueries(50)`
+        
+        
+left:calc(8rem + 15vw);
+
+`};
+
+${mediaQueries(40)`
+top: 30%;
+
+left:calc(6rem + 15vw);
+
+`};
+
+${mediaQueries(40)`
+
+left:calc(2rem + 15vw);
+
+`};
+${mediaQueries(25)`
+
+left:calc(1rem + 15vw);
+
+`};
 `
 
 const container = {

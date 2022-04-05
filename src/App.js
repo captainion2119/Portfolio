@@ -1,18 +1,19 @@
 import { ThemeProvider } from "styled-components"
 import GlobalStyles from "./globalStyles"
 import { LightTheme } from "./components/Themes"
-import { DarkTheme } from "./components/Themes"
 import { Route, Switch } from "react-router-dom"
-
-//components
-import Main from './components/Main';
-import MySkillsPage from "./components/MySkillsPage"
-import WorkPage from "./components/WorkPage"
-import BlogPage from "./components/BlogPage"
-import AboutPage from "./components/AboutPage"
 import { useLocation } from "react-router-dom"
 import { AnimatePresence } from "framer-motion"
-import SoundBar from "./subComponents/SoundBar"
+import { lazy, Suspense } from "react"
+import Loading from "./subComponents/Loading"
+
+//Components
+const Main = lazy(() => import("./components/Main"));
+const AboutPage = lazy(() => import("./components/AboutPage"));
+const MySkillsPage = lazy(() => import("./components/MySkillsPage"));
+const BlogPage = lazy(() => import("./components/BlogPage"));
+const WorkPage = lazy(() => import("./components/WorkPage"));
+const SoundBar = lazy(() => import("./subComponents/SoundBar"));
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
     
   <GlobalStyles />
     <ThemeProvider theme={LightTheme}>
+    <Suspense fallback={<Loading />}>
       <SoundBar />
       <AnimatePresence exitBeforeEnter>
       <Switch location={location} key={location.pathname}>
@@ -31,7 +33,7 @@ function App() {
         <Route exact path="/skills" component={MySkillsPage}/>
       </Switch>
       </AnimatePresence>
-    
+    </Suspense>
     </ThemeProvider>
     </>
     

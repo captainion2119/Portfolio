@@ -16,13 +16,12 @@ width: 100vw;
 height: 100vh;
 overflow: hidden;
 position: relative;
-
-
 h2,h3,h4,h5,h6{
     font-family: 'Karla', sans-serif;
     font-weight: 500;
 }
 `
+
 const Contact = styled(NavLink)`
 color: ${props => props.theme.text};
 position: absolute;
@@ -31,6 +30,7 @@ right: calc(1rem + 2vw);
 text-decoration: none;
 z-index: 1;
 `
+
 const Blog = styled(NavLink)`
 color: ${props => props.theme.text};
 position: absolute;
@@ -40,6 +40,7 @@ transform: rotate(90deg) translate(-50%, -50%);
 text-decoration: none;
 z-index: 1;
 `
+
 const Project = styled(NavLink)`
 color: ${props => props.theme.text};
 position: absolute;
@@ -49,9 +50,11 @@ transform: rotate(90deg) translate(-50%, -50%);
 text-decoration: none;
 z-index: 1;
 `
+
 const Container = styled.div`
 padding: 2rem;
 `
+
 const BottomBar = styled.div`
 position: absolute;
 bottom: 1rem;
@@ -61,16 +64,19 @@ width: 100%;
 display: flex;
 justify-content: space-evenly;
 `
+
 const About = styled(NavLink)`
 color: ${props => props.click ? props.theme.body : props.theme.text};
 text-decoration: none;
 z-index: 1;
 `
+
 const Skills = styled(NavLink)`
 color: ${props => props.theme.text};
 text-decoration: none;
 z-index: 1;
 `
+
 const rotate = keyframes`
 from{
     transform: rotate(0);
@@ -78,7 +84,6 @@ from{
 to{
     transform: rotate(-360deg);
 }
-
 `
 
 const Center = styled.button`
@@ -96,11 +101,9 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 transition: all 1s ease;
-
 &>*:first-child{
     animation: ${rotate} 1.5s linear infinite;
 }
-
 &>*:last-child{
     display: ${props => props.click ? 'none' : 'inline-block'};
     padding-top: 1rem;
