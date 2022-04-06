@@ -3,14 +3,15 @@ import styled from 'styled-components'
 import { ThemeProvider } from 'styled-components'
 import { LightTheme } from './Themes'
 import { Design, Develope } from './AllSVGs'
-import LogoComponent from '../subComponents/LogoComponent'
-import PowerButton from '../subComponents/PowerButton'
-import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent'
-import BigTitle from '../subComponents/BigTitle'
-import { Suspense } from 'react'
+import { lazy, Suspense } from 'react'
 import Loading from '../subComponents/Loading'
 import { mediaQueries } from './Themes'
+
+const SocialIcons = lazy(() => import('../subComponents/SocialIcons'))
+const PowerButton = lazy(() => import('../subComponents/PowerButton'))
+const LogoComponent = lazy(() => import('../subComponents/LogoComponent'))
+const BigTitle = lazy(() => import('../subComponents/BigTitle'))
 
 const Box = styled.div`
 background-color: ${props => props.theme.body};
